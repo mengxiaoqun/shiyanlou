@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from shiyanlougithub.items import RepositoryItem
+from shiyanlougithub.models import Repository, engine
 
 class RepositoriesSpider(scrapy.Spider):
     name = 'repositories'
@@ -17,7 +18,7 @@ class RepositoriesSpider(scrapy.Spider):
         return url_list
 
     def parse(self, response):
-        for github in response.css('li.col-2'):
+        for github in response.css('li.col-12'):
             item = RepositoryItem({
                 'name': github.css('h3 a::text').extract_first().strip(),
                 'update_time':github.css('div[class="f6 text-gray mt-2"] relative-time::attr(datetime)').extract_first().strip()

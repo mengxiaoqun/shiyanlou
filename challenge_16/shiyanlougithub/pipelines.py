@@ -1,6 +1,7 @@
 from sqlalchemy.orm import sessionmaker
-from shiyanlougithub.items import ReporisityItem
-from shiyanlougithub.models import Reporisity, engine
+from shiyanlougithub.items import RepositoryItem
+from shiyanlougithub.models import Repository, engine
+import datetime
 
 # -*- coding: utf-8 -*-
 
@@ -13,8 +14,8 @@ from shiyanlougithub.models import Reporisity, engine
 
 class ShiyanlougithubPipeline(object):
     def process_item(self, item, spider):
-        item['update_time'] = datetime.strptime(item['update_time'])
-        self.session.add(Reporisity(**item))
+
+        self.session.add(Repository(**item))
         return item
     
     def open_spider(self,spider):

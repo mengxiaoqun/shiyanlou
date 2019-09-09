@@ -39,16 +39,11 @@ def co2_gdp_plot():
                 countrys.append(country)
                 positions.append(i)
 
-    
-    fig,ax = plt.subplots()
-    x = df_norm.index
-    y1 = df_norm.co2
-    y2 = df_norm.gdp
-    ax.plot(x,y1,label='CO2-SUM')
-    ax.plot(x,y2,label='GDP-SUM')
-    ax.set_title('GDP-CO2')
-    ax.set_xlabel('Countries')
-    ax.set_ylabel('Values')
+    fig = plt.subplot()
+    df_norm.plot(ax=fig)
+    plt.xlabel('Countries') 
+    plt.ylabel('Values')
+    plt.title('GDP-CO2')
     plt.xticks(positions,countrys)
     plt.legend()
     plt.show()

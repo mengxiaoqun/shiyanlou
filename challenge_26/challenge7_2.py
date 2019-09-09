@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
 
@@ -24,10 +25,12 @@ def co2_gdp_plot():
 
     df_climate = pd.concat([data_co2,data_gdp],axis=1)    
     df_norm = (df_climate - df_climate.min()) / (df_climate.max() - df_climate.min())
-
-    china = ["{:.3f}".format(df_norm.loc['CHN'].co2),"{:.3f}".format(df_norm.loc['CHN'].gdp)]
+    
+    china = []
+    for i in df_norm.loc['CHN'].tolist():
+        china.append(np.round(i,3))
+    
     print(china)
-
 
     country_names = ['CHN','USA','GBR','FRA','RUS']
     positions = []
